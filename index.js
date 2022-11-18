@@ -1,19 +1,13 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const home = require("./routes/home");
 
-const PORT = process.env.PORT || 4200;
+// Middlewares
+const app = express();
+app.use(express.json());
 
-app.get('/', (req, res) => {
-      res.json({
-        status: 200,
-        message: 'Get data - OK',
-        result: result
-      });
-      console.error(error);
-      res.send('fine')
-    }
-  )
+// Routes
+app.use("/home", home);
 
-  console.log('check!!');
-
-app.listen(PORT, () => console.log(`Server is fine! ${PORT}`));
+// connection
+const port = process.env.PORT || 9001;
+app.listen(port, () => console.log(`Listening to port ${port}`));
