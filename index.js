@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
     }
   )
 
-  console.log('check');
+  console.log('check!');
 
 app.listen(PORT, () => console.log(`Server is fine! ${PORT}`));
