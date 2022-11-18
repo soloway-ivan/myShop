@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Shop on Angular, first try!",
   "main": "index.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
-    "start": "node index.js",
-    "vercel-build": "node ./index.js",
-    "build" : "node index.js"
+    "start": "node index.js"
   },
   "keywords": [
     "express",
