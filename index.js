@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 
-app.use(express.json({extended: false}));
 const PORT = process.env.PORT || 4200;
 
 app.get('/', (req, res) => {
