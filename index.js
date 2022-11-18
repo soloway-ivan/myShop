@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
         result: result.rows[0]
       });
       console.error(error);
+      res.send('fine')
     }
   )
 
