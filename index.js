@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
       res.json({
         status: 200,
         message: 'Get data - OK',
-        result: result.rows[0]
+        result: result
       });
       console.error(error);
       res.send('fine')
