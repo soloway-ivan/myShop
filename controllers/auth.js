@@ -1,7 +1,9 @@
 module.exports.login = function(req, res) {
     return res.status(200).json({
-        title: "Login Testing",
-        message: "The app is working properly!",
+       login: {
+            email: req.body.email,
+            password: req.body.password
+       }
     });
 }
 
