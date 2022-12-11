@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "build": "node index.js"
+    "build": "node index.js",
+    "vercel-build": "node ./index.js",
+    "dev" : "node ./index.js"
   },
   "keywords": [
     "express",
