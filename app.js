@@ -1,9 +1,11 @@
 const express = require("express");
-const { Client } = require('pg')
+// const { Client } = require('pg')
 require('dotenv').config();
 const bodyParser = require("body-parser");
 const typeorm = require("typeorm");
 require("reflect-metadata")
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', true)
 const authRoutes = require("./routes/auth");
 const analyticsRoutes = require("./routes/analytics");
 const categoryRoutes = require("./routes/category");
@@ -13,9 +15,9 @@ const connectionKeys = require("./config/connection-keys")
 const app = express();
 const userSchema = require("./models/User")
 
-console.log(process.env.PORT);
-
-// createConnection({connectionKeys, entities: [require("./models/User")]})
+mongoose.connect(process.env.uri)
+    .then(() => console.log('Connection to server MySQL is successful!'))
+    .catch(error => console.log(error))
 
 
 // const connection = new Client(connectionKeys)
@@ -28,64 +30,6 @@ console.log(process.env.PORT);
 //             })
 //         )
 //     .catch(() => console.log(error))
-
-
-
-const AppDataSource = new typeorm.DataSource({ 
-    type: "postgres",  
-    host: process.env.HOST,
-    user: process.env.USER,
-    database: process.env.DATABASE,
-    password: process.env.PASSWORD,
-    port: process.env.PORT,
-    entities: [userSchema],
-    native: true,
-    ssl: true, 
-    dialectOptions: {
-        ssl: true
-    }
-    // dialectOptions: {
-    //     "ssl": {"require":true }
-    //   },
-    //    ssl: true, 
-})
-
-AppDataSource
-    .initialize()
-    .then(() => {
-        // here you can start to work with your database
-    })
-    .catch((error) => console.log(error))
-    // .then(function () {
-    //     const category1 = {
-    //         name: "TypeScript",
-    //     }
-    //     const category2 = {
-    //         name: "Programming",
-    //     }
-
-    //     const post = {
-    //         title: "Control flow based type analysis",
-    //         text: "TypeScript 2.0 implements a control flow-based type analysis for local constiables and parameters.",
-    //         categories: [category1, category2],
-    //     }
-
-    //     const postRepository = dataSource.getRepository("Post")
-    //     postRepository
-    //         .save(post)
-    //         .then(function (savedPost) {
-    //             console.log("Post has been saved: ", savedPost)
-    //             console.log("Now lets load all posts: ")
-
-    //             return postRepository.find()
-    //         })
-    //         .then(function (allPosts) {
-    //             console.log("All posts: ", allPosts)
-    //         })
-    // })
-    // .catch(function (error) {
-    //     console.log("Error: ", error)
-    // })
 ///////////////////////////////////
 
 app.use(require("morgan")("dev"))

@@ -20,6 +20,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsconfig.json": "^2.3.3",
+    "mongoose": "^6.8.0",
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
     "postgres-schema-builder": "^1.3.0",
