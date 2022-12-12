@@ -19,9 +19,11 @@ module.exports.login = async function(req, res) {
             message: 'Successful login',
             token: token,
            })
-       }
+        } else {
+            res.status(401).json("Passwords doesn't match. Try again, please")
+        }
     } else {
-        res.status(401).json('User with current email not found. Try again.')
+        res.status(404).json("Current User doesn't exist. Try again, please")
     }
 }
 
