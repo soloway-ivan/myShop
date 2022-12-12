@@ -16,10 +16,11 @@ const app = express();
 const userSchema = require("./models/User")
 
 mongoose.connect(process.env.uri)
-    .then(() => console.log('Connection to server MySQL is successful!'))
+    .then(() => console.log('Connection to server mongoDB is successful!'))
     .catch(error => console.log(error))
 
-
+ 
+// mongoose.connection.close()
 // const connection = new Client(connectionKeys)
 // let query="SELECT personid, firstname, lastname, city FROM users WHERE personid = 1;";
 // connection.connect()
