@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     }
 })
 
-const filefilter = (req, file, cb) => {
+const fileFilter = (req, file, cb) => {
     if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
         cb(null, true) 
     } else {
@@ -25,4 +25,4 @@ const limits = {
 }
 
 
-module.exports = multer({storage,fileFilter,limits})
+module.exports = multer({storage, fileFilter, limits})
