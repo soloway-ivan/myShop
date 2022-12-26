@@ -17,7 +17,7 @@ module.exports.login = async function(req, res) {
           }, process.env.jsw, {expiresIn: 60*60})
           res.status(200).json({
             message: 'Successful login',
-            token: token,
+            token: `Bearer ${token}`,
            })
         } else {
             res.status(401).json("Passwords doesn't match. Try again, please")
