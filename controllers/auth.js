@@ -1,6 +1,6 @@
 const { user } = require('../config/connection-keys');
 const bcrypt = require('bcryptjs')
-const jsw = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const User = require('../models/User');
 const { token } = require('morgan');
 
@@ -11,10 +11,12 @@ module.exports.login = async function(req, res) {
        const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
 
        if(passwordResult) {
-          const token = jsw.sign({
-            email: req.body.email,
-            password: req.body.password
-          }, process.env.jsw, {expiresIn: 60*60})
+          const token = jwt.sign({
+            email: candidate.email,
+            password: candidate.password,
+            userId: candidate._id
+          }, process.env.jwt, {expiresIn: 60*60})
+
           res.status(200).json({
             message: 'Successful login',
             token: `Bearer ${token}`,
@@ -40,7 +42,8 @@ module.exports.register = async function(req, res) {
         const password = req.body.password;
         const user = new User({
             email: req.body.email,
-            password: bcrypt.hashSync(password, salt)
+            password: bcrypt.hashSync(password, salt),
+            userId: bcrypt.hashSync(password, salt),
             })
 
         try {

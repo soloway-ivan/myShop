@@ -1,10 +1,10 @@
 const express = require("express");
-// const { Client } = require('pg')
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 const bodyParser = require("body-parser");
 const typeorm = require("typeorm");
 require("reflect-metadata")
 const mongoose = require('mongoose');
+const passport = require('passport')
 mongoose.set('strictQuery', true)
 const authRoutes = require("./routes/auth");
 const analyticsRoutes = require("./routes/analytics");
@@ -13,7 +13,6 @@ const orderRoutes = require("./routes/order");
 const positionRoutes = require("./routes/position");
 const connectionKeys = require("./config/connection-keys")
 const app = express();
-const userSchema = require("./models/User")
 
 mongoose.connect(process.env.uri)
     .then(() => console.log('Connection to server mongoDB is successful!'))
@@ -32,6 +31,8 @@ mongoose.connect(process.env.uri)
 //         )
 //     .catch(() => console.log(error))
 ///////////////////////////////////
+app.use(passport.initialize())
+require('./middleware/passport')(passport)
 
 app.use(require("morgan")("dev"))
 app.use(bodyParser.urlencoded({extended:true}))
