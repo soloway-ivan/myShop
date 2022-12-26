@@ -1,16 +1,19 @@
-var EntitySchema = require("typeorm").EntitySchema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = new EntitySchema({
-    name: "Category", // Will use table name `category` as default behaviour.
-    tableName: "categories", // Optional: Provide `tableName` property to override the default behaviour for table name.
-    columns: {
-        id: {
-            primary: true,
-            type: "int",
-            generated: true,
-        },
+const categorySchema = new Schema({
         name: {
-            type: "varchar",
+            type: String,
+            required: true,
         },
-    },
+        imageSrc: {
+            type: String,
+            default: ''
+        },
+        user: {
+            ref: 'users',
+            type: Schema.Types.ObjectId
+        }
 })
+
+module.exports = mongoose.model('categories', categorySchema)
