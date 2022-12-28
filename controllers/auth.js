@@ -14,7 +14,7 @@ module.exports.login = async function(req, res) {
             email: candidate.email,
             password: candidate.password,
             userId: candidate._id
-          }, process.env.jwt, {expiresIn: 60*60})
+          }, process.env.JWT_AUTH_SECRET, {expiresIn: 60*60})
 
           res.status(200).json({
             message: 'Successful login',
