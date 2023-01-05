@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-page.component.sass']
 })
 export class LoginPageComponent {
+  element:string = ''
+  element1:string = ''
+  userName: string =''
+  userName1: string =''
+
+  handler() {
+    console.log(this.userName);
+    console.log(this.userName1);
+    
+  }
 
 }
