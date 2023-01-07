@@ -1,4 +1,6 @@
 import { Component,  } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-login-page',
