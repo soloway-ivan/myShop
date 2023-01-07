@@ -1,0 +1,111 @@
+@import '../../global-variables.sass'
+    
+header 
+    background-image: url("https://drive.google.com/uc?export=view&id=1qj90NErF62tskwI0WhTA-6fQ3YvCVodW")
+    width: 100%
+    height: 720px
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+
+.header-nav 
+    display: flex
+    justify-content: space-between
+    flex-wrap: nowrap
+    align-items: center
+    padding: 16px 80px 0 80px
+
+.shop-title
+    width: 700px
+    position: relative
+    &__name
+        font-size: 60px
+        font-weight: $font-weight-small
+        line-height: 50px
+        letter-spacing: 3.8rem
+
+
+    &__subtitle-container
+        position: absolute
+        width: 62px
+        right: 177px
+        top: 13px
+
+    &__subtitle
+        font-weight: $font-weight-small
+        letter-spacing: 0.1em
+        line-height: 12px
+        font-size: 10px
+
+
+.navicon 
+    width: 30px
+    height: 30px
+    padding: 5px
+    position: absolute
+    cursor: pointer
+    -webkit-user-select: none /* Chrome all / Safari all */
+    -moz-user-select: none    /* Firefox all */
+    -ms-user-select: none     /* IE 10+ */
+    user-select: none         /* Likely future */
+    box-sizing: border-box
+
+
+.navicon-bar
+    background-color: black
+    display: block
+    width: 20px
+    height: 2px
+    position: absolute
+    transition: all .2s ease-out
+
+
+/* pseudo element의 경우, style binding이 불가능하므로
+    :before/:after를 사용하여 햄버거 아이콘을 작성하지 않았다. */
+.navicon-bar:first-child 
+    top: 5px
+
+
+.navicon-bar:nth-child(2) 
+    top: 50%
+    transform: translateY(-50%)
+
+
+.navicon-bar:last-child 
+    bottom: 5px
+
+
+.nav-toggle:checked ~ .navicon > .navicon-bar:first-child 
+    transform: rotate(45deg)
+    top: 14px
+
+
+.nav-toggle:checked ~ .navicon > .navicon-bar:nth-child(2) 
+    background-color: transparent !important
+
+
+.nav-toggle:checked ~ .navicon > .navicon-bar:last-child 
+    transform: rotate(-45deg)
+    bottom: 13px
+
+
+.nav-toggle 
+    display: none
+
+
+
+.header-nav__info 
+    display: flex
+    gap: 20px
+    align-items: center
+
+.header-nav__shop-login svg
+    overflow: visible
+    margin-top: 5px
+
+
+.header-nav__active-lang
+    font-weight: $font-weight-medium
+    line-height: 13px
+    font-size: $font-size-medium-xs
+    letter-spacing: 0.1em
