@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,13 +13,22 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     LoginPageComponent,
     AuthLayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+  ],
+  entryComponents: [
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

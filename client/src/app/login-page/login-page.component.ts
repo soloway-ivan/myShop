@@ -1,5 +1,5 @@
 import { Component,  } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -7,16 +7,20 @@ import { MatDialogModule } from '@angular/material/dialog';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.sass']
 })
+
+
 export class LoginPageComponent {
+  constructor(
+    private dialogRef: MatDialogRef<LoginPageComponent>
+  ) 
+  {}
+
   element:string = ''
   element1:string = ''
   userName: string =''
   userName1: string =''
 
-  handler() {
-    console.log(this.userName);
-    console.log(this.userName1);
-    
+  close() {
+    this.dialogRef.close()    
   }
-
 }
